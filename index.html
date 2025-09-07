@@ -1,47 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>charity: water • College Campaign</title>
+  <!-- Fonts (close to Proxima Nova style) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#2f3753;
+      --navy-900:#242b45;
+      --yellow:#ffd100;
+      --ink:#0b1220;
+      --white:#ffffff;
+      --slate:#8ea5bd;
+      --muted:#cad1dc;
+      --border:#3a4465;
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Nunito Sans", system-ui, sans-serif;
+      color:var(--white);
+      background:var(--navy-900);
+      line-height:1.6;
+    }
+    img{max-width:100%; height:auto; display:block}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1100px; margin-inline:auto; padding-inline:16px}
+    :focus-visible{outline:3px solid var(--yellow); outline-offset:3px }
+
+    /* Header */
+    header{
+      background:var(--navy-900);
+      border-bottom:1px solid var(--border);
+      position:sticky; top:0; z-index:20
+    }
+    .header-inner{ display:flex; align-items:center; justify-content:space-between; height:64px }
+    .brand{ display:flex; gap:.6rem; align-items:center; font-weight:800; font-family:Montserrat, sans-serif }
+    .drop{ width:26px; height:26px; border-radius:6px; background:var(--yellow); position:relative }
+    .drop::after{ content:""; position:absolute; inset:6px; border:2px solid #000; border-radius:4px }
+
+    /* Hero */
+    .hero{ background:var(--navy); }
+    .hero-wrap{ display:grid; gap:0 }
+    .hero-copy{ padding:36px 16px 44px; text-align:center }
+    .headline{
+      margin:.5rem 0 1.25rem;
+      font-family:Montserrat, sans-serif;
+      font-weight:800;
+      font-size:clamp(1.8rem,4.2vw,3rem);
+      line-height:1.15;
+      letter-spacing:-0.02em;
+      text-transform:uppercase
+    }
+    .headline .hi{ color:var(--yellow) }
+    .sub{ color:var(--muted); max-width:55ch; margin:0 auto 1.25rem }
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      background:var(--yellow);
+      color:#111;
+      font-weight:800;
+      padding:.9rem 1.4rem;
+      border-radius:999px;
+      border:3px solid var(--white);
+      box-shadow:0 6px 0 rgba(0,0,0,.25);
+      font-family:Montserrat, sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.02em
+    }
+    .cta svg{ width:18px; height:18px; fill:#111 }
+
+    /* Why Water */
+    .why{ background:var(--navy); padding:52px 0; text-align:center; border-top:1px solid var(--border) }
+    .why h2{
+      font-family:Montserrat, sans-serif;
+      text-transform:uppercase;
+      font-weight:800;
+      font-size:clamp(1.6rem,3.5vw,2.4rem);
+      margin:0 0 .25rem;
+      letter-spacing:-0.01em
+    }
+    .why h3{
+      font-weight:700;
+      text-transform:uppercase;
+      font-size:clamp(1.1rem,2.5vw,1.6rem);
+      margin:.25rem 0 1rem;
+      color:var(--muted);
+      font-family:Montserrat, sans-serif
+    }
+    .why p.lead{ color:var(--muted); max-width:70ch; margin:0 auto 2rem }
+    .benefits{ display:grid; gap:18px; margin-top:18px }
+    .benefit{ display:flex; flex-direction:column; align-items:center; gap:.5rem; padding:12px }
+    .benefit strong{ display:block; font-size:.95rem; letter-spacing:.4px; font-family:Montserrat, sans-serif }
+    .benefit small{ color:var(--muted) }
+
+    /* Waves */
+    .waves{ display:grid; }
+    .waves-copy{ background:var(--slate); color:#1b2435; padding:36px 16px; text-align:center }
+    .waves-copy h2{
+      text-transform:uppercase;
+      font-weight:800;
+      letter-spacing:.02em;
+      margin:0 0 .6rem;
+      font-family:Montserrat, sans-serif
+    }
+
+    /* Footer */
+    footer{ border-top:1px solid var(--border); padding:18px 0; color:var(--muted); font-size:.95rem; text-align:center }
+
+    @media (min-width:800px){
+      .hero-wrap{ grid-template-columns:1.1fr .9fr }
+      .hero-copy{ padding:56px 40px; text-align:left; display:flex; flex-direction:column; justify-content:center }
+      .why .benefits{ grid-template-columns:repeat(3,1fr) }
+      .waves{ grid-template-columns:1fr 1fr }
+      .waves-copy{ padding:64px 48px; text-align:left }
+    }
+  </style>
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
+  <header>
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <span class="drop" aria-hidden="true"></span>
+        charity: water • Campus
+      </a>
+    </div>
+  </header>
 
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-wrap">
+      <figure class="hero-media" aria-hidden="true">
+        <img src="img/mother-baby.jpg" alt="Mother holding baby collecting clean water">
+      </figure>
+      <div class="hero-copy">
+        <h1 class="headline"><span class="hi">One</span> small choice.<br/>A world of <span class="hi">change</span>.</h1>
+        <p class="sub">It starts with one choice, one dollar, one student — you.</p>
+        <a class="cta" href="#join">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C9 6 6 9 6 13c0 3.866 3.134 7 7 7s7-3.134 7-7c0-4-3-7-8-11z"/></svg>
+          Join the movement
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
+  <!-- Why Water -->
+  <section class="why" id="why">
+    <div class="container">
+      <h2>Why Water?</h2>
+      <h3>Because it changes everything.</h3>
+      <p class="lead">Right now, 771 million people lack access to clean water. Water unlocks education, health, and opportunity — just like the opportunities you have as a student.</p>
+      <div class="benefits">
+        <div class="benefit">
+          <div aria-hidden="true">📘</div>
+          <strong>Education</strong>
+          <small>Kids can stay in school.</small>
         </div>
-    </section>
+        <div class="benefit">
+          <div aria-hidden="true">💛</div>
+          <strong>Health</strong>
+          <small>Families stay safe from disease.</small>
+        </div>
+        <div class="benefit">
+          <div aria-hidden="true">🌱</div>
+          <strong>Growth</strong>
+          <small>Communities thrive.</small>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+  <!-- Students making waves -->
+  <section class="waves" id="waves">
+    <figure class="waves-img" aria-hidden="true">
+     <img src="img/two-boys.jpg" alt="Two boys smiling at water pump">
+    </figure>
+    <div class="waves-copy">
+      <div class="container">
+        <h2>Students like you are making waves.</h2>
+        <p>From dorm fundraisers to campus 5Ks, students everywhere are raising awareness and bringing clean water to thousands of families. Together, we can end the water crisis.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> charity: water • Campus — Replace stock photos with your assets in <code>/img</code>.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
